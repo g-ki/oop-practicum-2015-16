@@ -1,64 +1,59 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-void swap(int& a, int& b) {
-  int tmp = a;
-  a = b;
-  b = tmp;
-}
+bool is_prime(int n) {
 
-void sieve_array(int* arr, int size, bool left_to_right = true) {
-  while (size > 1) {
+  if(n <= 1)
+    return false;
 
-    //int i = (left_to_right || size % 2 != 0) ? 1 : 0;
-    int i = (left_to_right || size % 2 != 0);
-    for (; i < size; i += 2)
-      swap(arr[i], arr[i / 2]);
-
-    size /= 2;
-    left_to_right = !left_to_right;
-  }
-}
-
-bool sieve_array_test() {
-
-  int arr[] = {1,2,3,4,5,6,7,8,9};
-  sieve_array(arr, 9);
-  cout << 6 << " == " << arr[0] << endl;
-  if (arr[0] != 6) return false;
-
-
-  int arr1[] = {1,2,3,4,5,6};
-  sieve_array(arr1, 6);
-  cout << 4 << " == " << arr1[0] << endl;
-  if (arr1[0] != 4) return false;
+  int sqrt_n = sqrt(n);
+  for (int i = 2; i <= sqrt_n; ++i)
+    if (n % i == 0) return false;
 
   return true;
 }
 
-void menu() {
+int get_primes(int matrix[][15], int n, int* result) {
+  int size = 0;
 
-  int n;
+  for (int k=0; k < n; ++k)
+    for (int i=0, j=k; i<n && j >= 0; ++i, --j)
+      if(is_prime(matrix[i][j]))
+        result[size++] = matrix[i][j];
 
-  do {
-    cout << "Enter size of the array: ";
-    cin >> n;
-  } while(n < 0 || n > 100);
+  for (int k=1; k < n; ++k)
+    for (int i=k, j=n-1; i<n && j >= 0; ++i, --j)
+      if(is_prime(matrix[i][j]))
+        result[size++] = matrix[i][j];
 
-  int arr[n];
-  for (int i = 0; i < n; ++i) {
-    cout << "array[" << i << "]: ";
-    cin >> arr[i];
-  }
-
-  sieve_array(arr, n);
-  cout << "last: " << arr[0] << endl;
+  return size;
 }
 
 int main() {
+  int n;
+  do {
+    cout << "Enter the matrix size: ";
+    cin >> n;
+  } while(n < 0 || n > 15);
 
-  menu();
-  //sieve_array_test();
+  int matrix[15][15];
+
+  for (int i=0; i<n; ++i) {
+    for (int j=0; j<n; ++j) {
+      cout << "M[" << i << "][" << j << "]= ";
+      cin >> matrix[i][j];
+    }
+  }
+
+  int result[n*n];
+  int result_size = 0;
+  result_size = get_primes(matrix, 3, result);
+
+  for (int i=0; i < result_size; ++i)
+    cout << result[i] << " ";
+
+  cout << endl;
 
   return 0;
 }

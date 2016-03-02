@@ -27,7 +27,3 @@
 
 - инициализиране на нов `User` и на нов `Message`
 - принтиране на `User` и `Message`
-
-
-
-https://codeshare.io/X6YiK

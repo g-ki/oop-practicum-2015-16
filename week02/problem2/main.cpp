@@ -10,7 +10,7 @@ struct User {
 
 struct Message {
   int id;
-  char conctent[1024];
+  char content[1024];
   User from, to;
 };
 
@@ -36,7 +36,7 @@ Message send_message(int id, const char* msg, const User& from, const User& to) 
   Message m;
 
   m.id = id;
-  strncpy(m.conctent, msg, 1024);
+  strncpy(m.content, msg, 1024);
   m.from = from;
   m.to = to;
 
@@ -50,7 +50,7 @@ void print_message(const Message& msg) {
   cout << "To: ";
   print_user(msg.to);
 
-  cout << "Content: " << msg.conctent << endl;
+  cout << "Content: " << msg.content << endl;
 }
 
 

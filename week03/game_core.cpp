@@ -3,7 +3,7 @@
 using namespace std;
 
 struct Vector {
-  float x, y,z;
+  float x, y, z;
 
   void init(float x, float y, float z) {
     this->x = x;
@@ -18,10 +18,13 @@ struct Vector {
   Vector normalize() const {
     Vector tmp;
     float len = length();
-    tmp.x = x / len;
-    tmp.y = y / len;
-    tmp.z = z / len;
 
+    if (len > 0) {
+      tmp.x = x / len;
+      tmp.y = y / len;
+      tmp.z = z / len;
+    }
+    
     return tmp;
   }
 

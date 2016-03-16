@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-
+// .hpp грубо казано каза, че кода в файла е написан на c++, а не на c(.h).
+// http://stackoverflow.com/a/152671
 struct Record {
   char first[32], second[32];
 
@@ -9,7 +10,6 @@ struct Record {
     strncpy(second, s, 32);
   }
 };
-
 
 class Dictionary {
 private:
@@ -23,5 +23,7 @@ public:
   void remove(const char*);
   int search(const char*);
 
-  char translate(const char*, char*);
+  void translate(const char*, char*);
+
+  int get_size() const { return size; }
 };

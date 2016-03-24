@@ -32,6 +32,7 @@ int main() {
 
   Object a(40, 'a');
   Object b = a;
+  Object c(b);
 
 
   Object* po = new Object(40, 'p');

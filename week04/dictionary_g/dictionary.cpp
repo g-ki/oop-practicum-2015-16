@@ -5,7 +5,11 @@ Dictionary::Dictionary() {
 }
 
 void Dictionary::add(const char *a, const char *b) {
-  data[size++].set(a,b);
+  int i = search(a);
+  if (i < 0 && size < 1000)
+    data[size++].set(a, b);
+  else if (i >= 0)
+    strncpy(data[i].second, b, 32);
 }
 
 int Dictionary::search(const char*a) {

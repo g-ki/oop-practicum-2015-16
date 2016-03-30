@@ -41,10 +41,8 @@ bool is_full_firm(const Firm& f) {
 }
 
 void add_employee(Firm& f, const Employee& e) {
-  f.employees[f.size] = e;
-  ++f.size;
-  // тук за по кратко може да се запише на един ред: f.employees[f.size++] = e;
-  // каква е разликата между ++a и a++?
+  if (f.size < 15)
+    f.employees[f.size++] = e;
 }
 
 void remove_employee(Firm& f, char const* name) {

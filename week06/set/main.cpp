@@ -22,9 +22,10 @@ int main() {
 
   Set x = Set() + 1 + 2 + 3 + 4;
   Set y = Set() + 2 + 3 + 5 + 6;
+  Set z = (x - y) + (y - x); // {1, 4, 6, 5} симетрична разлика
+  cout << z << endl;
 
-  cout << (x - y) + (y - x) << endl; // {1, 4, 6, 5} симетрична разлика
-
+  cout << (c ^ z) << endl;
 
   return 0;
 }

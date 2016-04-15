@@ -8,3 +8,4 @@ install_manifest.txt
 build
 .DS_Store
 CMakeLists.txt
+.clang_complete

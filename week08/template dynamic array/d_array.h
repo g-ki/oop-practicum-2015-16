@@ -11,6 +11,7 @@ class DArray
 	int capacity;
 
 	void resize();
+	void copy(DArray<T> const&);
 	bool full() const;
 public:
 	DArray();
@@ -46,14 +47,20 @@ DArray<T>::DArray()
 }
 
 template <typename T>
-DArray<T>::DArray(DArray const& rhs)
+void DArray<T>::copy(DArray<T> const& da)
 {
-	size = rhs.size;
-	capacity = rhs.capacity;
+	size = da.size;
+	capacity = da.capacity;
 	array = new T[capacity];
 	
 	for (int i = 0; i < size; i++)
-		array[i] = rhs.array[i];
+		array[i] = da.array[i];
+}
+
+template <typename T>
+DArray<T>::DArray(DArray const& rhs)
+{
+	copy(rhs);
 }
 
 template <typename T>
@@ -138,11 +145,7 @@ DArray<T>& DArray<T>::operator=(DArray<T> const& da)
 	if (this != &da)
 	{
 		delete[] array;
-		array = new T[da.capacity];
-		size = da.size;
-		capacity = da.capacity;
-		for (int i = 0; i < size; i++)
-			array[i] = da.array[i];
+		copy(da);
 	}
 	return *this;
 }

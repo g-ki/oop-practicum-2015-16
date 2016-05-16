@@ -1,4 +1,4 @@
-# Week 08
+# Week 10
 
 Да се реализира шаблонен клас List(едносвързан списък) с методи:
    - bool `empty`- Test whether container is empty

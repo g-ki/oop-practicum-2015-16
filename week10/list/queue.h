@@ -42,7 +42,9 @@ Queue<T>::Queue(Queue const& rs) : List<T>(rs)
 template <typename T>
 Queue<T>& Queue<T>::operator=(Queue const& rs)
 {
-	return List<T>::operator=(rs);
+	if (this != &rs)
+		List<T>::operator=(rs);
+	return *this;
 }
 
 template <typename T>
